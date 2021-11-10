@@ -2,11 +2,15 @@ package br.com.zup.GerenciadorContas.conta;
 
 
 import br.com.zup.GerenciadorContas.conta.dtos.EntradaDTO;
+import br.com.zup.GerenciadorContas.conta.dtos.ResumoDTO;
 import br.com.zup.GerenciadorContas.conta.dtos.SaidaDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/contas")
@@ -25,4 +29,18 @@ public class ContaController {
 
   }
 
+  @GetMapping
+  List<ResumoDTO> exibirContas() {
+    List<ResumoDTO> listaDeContas = new ArrayList<>();
+    for (Conta conta : contaService.exibirContas()) {
+      ResumoDTO resumo = modelMapper.map(conta, ResumoDTO.class);
+      listaDeContas.add(resumo);
+    }
+    return listaDeContas;
+
+  }
+
+
 }
+
+

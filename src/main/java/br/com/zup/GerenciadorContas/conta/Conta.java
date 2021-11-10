@@ -17,10 +17,12 @@ public class Conta {
   @Column(nullable = false)
   private String nome;
   private double valor;
+  @Enumerated(EnumType.STRING)
   private Tipo tipo;
   private LocalDate dataDeVencimento;
   @Column(nullable = true)
   private LocalDateTime dataDePagamento;
+  @Enumerated(EnumType.STRING)
   private Status status;
 
   public Conta() {
@@ -34,6 +36,14 @@ public class Conta {
     this.dataDeVencimento = dataDeVencimento;
     this.dataDePagamento = dataDePagamento;
     this.status = status;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNome() {
