@@ -1,6 +1,7 @@
 package br.com.zup.GerenciadorContas.conta;
 
 
+import br.com.zup.GerenciadorContas.conta.dtos.AtualizarPagamentoDTO;
 import br.com.zup.GerenciadorContas.conta.dtos.EntradaDTO;
 import br.com.zup.GerenciadorContas.conta.dtos.ResumoDTO;
 import br.com.zup.GerenciadorContas.conta.dtos.SaidaDTO;
@@ -39,6 +40,14 @@ public class ContaController {
     return listaDeContas;
 
   }
+
+  @PutMapping("{id}")
+  public SaidaDTO atualizarPagamento (@PathVariable int id, @RequestBody AtualizarPagamentoDTO contaAtualizada){
+    return modelMapper.map(contaService.atualizarConta(id), SaidaDTO.class);
+
+  }
+
+
 
 
 }
