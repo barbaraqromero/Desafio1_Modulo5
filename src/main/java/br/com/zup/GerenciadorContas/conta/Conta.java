@@ -1,5 +1,8 @@
 package br.com.zup.GerenciadorContas.conta;
 
+import br.com.zup.GerenciadorContas.conta.enums.Status;
+import br.com.zup.GerenciadorContas.conta.enums.Tipo;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
