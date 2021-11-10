@@ -34,7 +34,7 @@ public class ContaService {
     return contas;
   }
 
-  public Conta atualizarConta(int id) {
+  public Conta buscarPorId(int id) {
     Optional<Conta> conta = contaRepository.findById(id);
     if (conta.isEmpty()){
       throw new IdNaoEncontradoException("Não encontrado!");
