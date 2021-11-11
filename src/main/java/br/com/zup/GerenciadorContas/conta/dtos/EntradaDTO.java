@@ -2,13 +2,18 @@ package br.com.zup.GerenciadorContas.conta.dtos;
 
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class EntradaDTO {
 
+  @NotBlank
   private String nome;
+  @NotBlank
   private double valor;
+  @NotBlank
   private Tipo tipo;
+  @NotBlank
   private LocalDate dataDeVencimento;
 
   public EntradaDTO() {
