@@ -45,7 +45,7 @@ public class ControllerAdvice {
 
   @ExceptionHandler(HttpMessageNotReadableException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public MensagemDeErro manupularExcecaoDeEnumInvalido(HttpMessageNotReadableException excecao) {
+  public MensagemDeErro manipularExcecaoDeEnumInvalido(HttpMessageNotReadableException excecao) {
     return new MensagemDeErro(excecao.getLocalizedMessage());
   }
 
