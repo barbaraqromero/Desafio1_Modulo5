@@ -4,6 +4,7 @@ package br.com.zup.GerenciadorContas.config;
 import br.com.zup.GerenciadorContas.conta.exceptions.IdNaoEncontradoException;
 import br.com.zup.GerenciadorContas.conta.exceptions.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.MessageCodeFormatter;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -39,6 +40,12 @@ public class ControllerAdvice {
   @ExceptionHandler(IdNaoEncontradoException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public MensagemDeErro idNaoEncontrado(IdNaoEncontradoException excecao) {
+    return new MensagemDeErro(excecao.getLocalizedMessage());
+  }
+
+  @ExceptionHandler(HttpMessageNotReadableException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public MensagemDeErro manupularExcecaoDeEnumInvalido(HttpMessageNotReadableException excecao) {
     return new MensagemDeErro(excecao.getLocalizedMessage());
   }
 
