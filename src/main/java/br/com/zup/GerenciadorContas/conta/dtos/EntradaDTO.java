@@ -2,6 +2,7 @@ package br.com.zup.GerenciadorContas.conta.dtos;
 
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,10 +12,10 @@ public class EntradaDTO {
 
   @Size(min = 2, message = "Digite um nome com pelo menos 2 caracteres")
   private String nome;
-  @Min(value = 0, message = "Valor inválido!")
+  @DecimalMin(value = "0.01", message = "Digite um valor acima de 0")
   private double valor;
   private Tipo tipo;
-  @NotNull(message = "Esse campo deve ser preenchido")
+  @NotNull(message = "O campo 'Data de vencimento' deve ser preenchido")
   private LocalDate dataDeVencimento;
 
   public EntradaDTO() {
