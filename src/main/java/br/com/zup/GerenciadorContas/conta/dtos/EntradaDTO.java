@@ -3,7 +3,6 @@ package br.com.zup.GerenciadorContas.conta.dtos;
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;

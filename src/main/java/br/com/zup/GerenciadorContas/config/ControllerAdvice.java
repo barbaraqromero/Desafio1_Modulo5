@@ -1,8 +1,11 @@
 package br.com.zup.GerenciadorContas.config;
 
 
+import br.com.zup.GerenciadorContas.conta.exceptions.IdNaoEncontradoException;
+import br.com.zup.GerenciadorContas.conta.exceptions.StatusInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.MessageCodeFormatter;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,15 +19,27 @@ public class ControllerAdvice {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-  public List<MensagemDeErro> tratarErrosDeValidacao (MethodArgumentNotValidException excecao){
+  public List<MensagemDeErro> tratarErrosDeValidacao(MethodArgumentNotValidException excecao) {
     List<MensagemDeErro> erros = new ArrayList<>();
 
-    for (FieldError referencia : excecao.getFieldErrors()){
+    for (FieldError referencia : excecao.getFieldErrors()) {
       MensagemDeErro mensagemDeErro = new MensagemDeErro(referencia.getDefaultMessage());
       erros.add(mensagemDeErro);
     }
 
     return erros;
+  }
+
+  @ExceptionHandler(StatusInvalidoException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public MensagemDeErro statusInvalidoException(StatusInvalidoException excecao) {
+    return new MensagemDeErro(excecao.getLocalizedMessage());
+  }
+
+  @ExceptionHandler(IdNaoEncontradoException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public MensagemDeErro idNaoEncontrado(IdNaoEncontradoException excecao) {
+    return new MensagemDeErro(excecao.getLocalizedMessage());
   }
 
 
