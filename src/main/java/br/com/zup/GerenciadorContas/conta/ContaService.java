@@ -2,6 +2,7 @@ package br.com.zup.GerenciadorContas.conta;
 
 
 import br.com.zup.GerenciadorContas.conta.enums.Status;
+import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 import br.com.zup.GerenciadorContas.conta.exceptions.IdNaoEncontradoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +38,29 @@ public class ContaService {
 
   public Conta buscarPorId(int id) {
     Optional<Conta> conta = contaRepository.findById(id);
-    if (conta.isEmpty()){
+    if (conta.isEmpty()) {
       throw new IdNaoEncontradoException("Cadastro não encontrado!");
     }
     return conta.get();
   }
 
-  public Conta atualizarConta (int id) {
+  public Conta atualizarConta(int id) {
     Conta conta = buscarPorId(id);
     conta.setDataDePagamento(LocalDateTime.now());
     conta.setStatus(Status.PAGO);
     contaRepository.save(conta);
     return conta;
 
+  }
+
+  public List<Conta> aplicarFiltros(Status status, Tipo tipo) {
+    if (status != null) {
+      return contaRepository.findAllByStatus(status);
+    } else if (tipo != null) {
+      return contaRepository.findAllByTipo(tipo);
+    }
+    List<Conta> contas = (List<Conta>) contaRepository.findAll();
+    return contas;
   }
 
 }
