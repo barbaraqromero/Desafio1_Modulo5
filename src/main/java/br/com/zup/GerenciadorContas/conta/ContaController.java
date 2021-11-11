@@ -44,7 +44,7 @@ public class ContaController {
 
   }
 
-  @PutMapping("{id}")
+  @PutMapping("/{id}")
   public SaidaDTO atualizarPagamento(@PathVariable int id, @RequestBody AtualizarPagamentoDTO contaAtualizada) {
     if (contaAtualizada.getStatus() == Status.PAGO) {
       return modelMapper.map(contaService.atualizarConta(id), SaidaDTO.class);
@@ -52,10 +52,15 @@ public class ContaController {
     }
     throw new StatusInvalidoException("Status inválido!");
 
-
   }
 
+  @GetMapping("/{id}")
+  public SaidaDTO buscarContaEspecifica(@PathVariable int id) {
+    Conta conta = contaService.buscarPorId(id);
+    return modelMapper.map(conta, SaidaDTO.class);
 
+
+  }
 
 }
 
