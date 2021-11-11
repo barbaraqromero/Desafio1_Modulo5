@@ -2,18 +2,19 @@ package br.com.zup.GerenciadorContas.conta.dtos;
 
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class EntradaDTO {
 
-  @NotBlank
+  @Size(min = 2, message = "Digite um nome com pelo menos 2 caracteres")
   private String nome;
-  @NotBlank
+  @Min(value = 0, message = "Valor inválido!")
   private double valor;
-  @NotBlank
   private Tipo tipo;
-  @NotBlank
+  @NotNull(message = "Esse campo deve ser preenchido")
   private LocalDate dataDeVencimento;
 
   public EntradaDTO() {

@@ -18,7 +18,6 @@ public class Conta {
   private String nome;
   @Column(nullable = false)
   private double valor;
-  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Tipo tipo;
   @Column(nullable = false)
