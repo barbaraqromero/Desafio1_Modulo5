@@ -53,11 +53,13 @@ public class ContaService {
 
   }
 
-  public List<Conta> aplicarFiltros(Status status, Tipo tipo) {
+  public List<Conta> aplicarFiltros(Status status, Tipo tipo, Double valor) {
     if (status != null) {
       return contaRepository.findAllByStatus(status);
     } else if (tipo != null) {
       return contaRepository.findAllByTipo(tipo);
+    } else if (valor != null){
+      return contaRepository.findAllByValorAproximado(valor);
     }
     List<Conta> contas = (List<Conta>) contaRepository.findAll();
     return contas;

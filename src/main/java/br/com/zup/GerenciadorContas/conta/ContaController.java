@@ -8,7 +8,6 @@ import br.com.zup.GerenciadorContas.conta.dtos.SaidaDTO;
 import br.com.zup.GerenciadorContas.conta.enums.Status;
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 import br.com.zup.GerenciadorContas.conta.exceptions.StatusInvalidoException;
-import org.checkerframework.checker.index.qual.PolyUpperBound;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,9 +37,9 @@ public class ContaController {
   @GetMapping
   List<ResumoDTO> exibirContas(@RequestParam(required = false) Status status,
                                @RequestParam(required = false) Tipo tipo,
-                               @RequestParam(required = false) Integer valor) {
+                               @RequestParam(required = false) Double valor) {
     List<ResumoDTO> listaDeContas = new ArrayList<>();
-    for (Conta conta : contaService.aplicarFiltros(status, tipo)) {
+    for (Conta conta : contaService.aplicarFiltros(status, tipo, valor)) {
       ResumoDTO resumo = modelMapper.map(conta, ResumoDTO.class);
       listaDeContas.add(resumo);
     }
