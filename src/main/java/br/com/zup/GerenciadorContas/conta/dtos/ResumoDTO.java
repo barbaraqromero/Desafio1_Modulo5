@@ -50,5 +50,6 @@ public class ResumoDTO {
   public void setStatus(Status status) {
     this.status = status;
   }
+
 }
 

@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/contas")
 public class ContaController {
+
   @Autowired
   ContaService contaService;
 
@@ -40,8 +41,8 @@ public class ContaController {
                                @RequestParam(required = false) Double valor) {
     List<ResumoDTO> listaDeContas = new ArrayList<>();
     for (Conta conta : contaService.aplicarFiltros(status, tipo, valor)) {
-      ResumoDTO resumo = modelMapper.map(conta, ResumoDTO.class);
-      listaDeContas.add(resumo);
+      ResumoDTO resumoConta = modelMapper.map(conta, ResumoDTO.class);
+      listaDeContas.add(resumoConta);
     }
     return listaDeContas;
 
@@ -68,7 +69,6 @@ public class ContaController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deletarConta(@PathVariable int id) {
     contaService.deletarConta(id);
-
 
   }
 

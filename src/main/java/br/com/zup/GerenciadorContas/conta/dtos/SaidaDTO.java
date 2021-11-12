@@ -86,4 +86,5 @@ public class SaidaDTO {
   public void setStatus(Status status) {
     this.status = status;
   }
+
 }

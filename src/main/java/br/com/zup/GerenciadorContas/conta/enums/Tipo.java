@@ -7,4 +7,5 @@ public enum Tipo {
   GAS,
   LAZER,
   OUTROS
+
 }

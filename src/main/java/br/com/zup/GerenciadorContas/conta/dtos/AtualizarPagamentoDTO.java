@@ -20,4 +20,5 @@ public class AtualizarPagamentoDTO {
   public void setStatus(Status status) {
     this.status = status;
   }
+
 }

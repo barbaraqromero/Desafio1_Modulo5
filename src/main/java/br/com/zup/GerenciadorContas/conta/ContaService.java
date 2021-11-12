@@ -14,11 +14,12 @@ import java.util.Optional;
 
 @Service
 public class ContaService {
+
   @Autowired
   private ContaRepository contaRepository;
 
   public Conta cadastrarConta(Conta conta) {
-    LocalDate dataAtual = LocalDate.now();
+    LocalDate dataAtual = LocalDate.now(); //Automatizando o método para que ele traga a data atualizada a cada cadastro
     if (conta.getDataDeVencimento().isBefore(dataAtual)) {
       conta.setStatus(Status.VENCIDO);
     } else {
@@ -58,8 +59,8 @@ public class ContaService {
     } else if (valor != null) {
       return contaRepository.findAllByValorAproximado(valor);
     }
-    List<Conta> contas = (List<Conta>) contaRepository.findAll();
-    return contas;
+    return exibirContas();
+
   }
 
   public void deletarConta(int id) {
@@ -69,8 +70,6 @@ public class ContaService {
       throw new IdNaoEncontradoException("Cadastro não encontrado!");
     }
 
-
   }
-
 
 }
