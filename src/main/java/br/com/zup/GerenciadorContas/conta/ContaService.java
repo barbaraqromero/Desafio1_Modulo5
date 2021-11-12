@@ -4,7 +4,6 @@ package br.com.zup.GerenciadorContas.conta;
 import br.com.zup.GerenciadorContas.conta.enums.Status;
 import br.com.zup.GerenciadorContas.conta.enums.Tipo;
 import br.com.zup.GerenciadorContas.conta.exceptions.IdNaoEncontradoException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +16,6 @@ import java.util.Optional;
 public class ContaService {
   @Autowired
   private ContaRepository contaRepository;
-  @Autowired
-  private ModelMapper modelMapper;
 
   public Conta cadastrarConta(Conta conta) {
     LocalDate dataAtual = LocalDate.now();
@@ -58,7 +55,7 @@ public class ContaService {
       return contaRepository.findAllByStatus(status);
     } else if (tipo != null) {
       return contaRepository.findAllByTipo(tipo);
-    } else if (valor != null){
+    } else if (valor != null) {
       return contaRepository.findAllByValorAproximado(valor);
     }
     List<Conta> contas = (List<Conta>) contaRepository.findAll();
