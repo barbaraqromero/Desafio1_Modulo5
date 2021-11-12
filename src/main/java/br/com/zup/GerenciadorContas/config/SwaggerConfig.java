@@ -1,6 +1,5 @@
 package br.com.zup.GerenciadorContas.config;
 
-import br.com.zup.GerenciadorContas.GerenciadorContasApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
