@@ -10,9 +10,10 @@ import java.time.LocalDate;
 
 public class EntradaDTO {
 
-  @NotNull
+  @NotBlank
   @Size(min = 2, message = "Digite um nome com pelo menos 2 caracteres")
   private String nome;
+  @NotNull
   @DecimalMin(value = "0.01", message = "Digite um valor acima de 0")
   private double valor;
   @NotNull
